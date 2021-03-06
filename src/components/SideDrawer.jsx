@@ -50,7 +50,7 @@ function SideDrawer({ isDrawerOpen, toggleDrawer }) {
         <ListSection
           listText={"TRY IT OUT"}
           ListIcon={PlayArrowIcon}
-          linkText="/unauthenticated/calendar"
+          linkText="/authenticated/calendar"
           toggleDrawer={toggleDrawer}
         />
         <ListSection

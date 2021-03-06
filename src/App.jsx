@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./styles/App.css";
 
 import Homepage from "./screens/Unauthenticated/Homepage";
@@ -16,11 +16,23 @@ function App() {
     <Switch>
       <Route path="/" component={Homepage} exact />
       <Route
-        path="/authenticated/calendar"
-        component={AuthenticatedCalendar}
+        path={"/authenticated/calendar"}
+        render={() =>
+          auth.currentUser ? (
+            <AuthenticatedCalendar />
+          ) : (
+            <Redirect to="/signin" />
+          )
+        }
         exact
       />
-      <Route path="/authenticated/dashboard" component={Dashboard} exact />
+      <Route
+        path={"/authenticated/dashboard"}
+        render={() =>
+          auth.currentUser ? <Dashboard /> : <Redirect to="/signin" />
+        }
+        exact
+      />
       <Route path="/signin" component={SignIn} exact />
       <Route path="/signup" component={SignUp} exact />
     </Switch>

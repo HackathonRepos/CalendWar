@@ -32,7 +32,7 @@ function SideDrawer({ isDrawerOpen, toggleDrawer }) {
         <ListSection
           listText={"HOME"}
           ListIcon={HomeIcon}
-          linkText={"/"}
+          linkText={"/authenticated/dashboard"}
           toggleDrawer={toggleDrawer}
         />
         <ListSection

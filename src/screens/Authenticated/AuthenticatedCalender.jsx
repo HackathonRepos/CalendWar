@@ -4,10 +4,11 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "axios";
 import Event from "../../components/CalenderComponents/Event";
+import { mockData } from "./original";
 
 function AuthenticatedCalendar() {
   const [value, onChange] = useState(new Date());
-  const [historicalData, setHistoricalData] = useState({});
+  const [historicalData, setHistoricalData] = useState(mockData);
   const month = value.getMonth() + 1;
   const day = value.getDate();
   const handleChange = (val) => {

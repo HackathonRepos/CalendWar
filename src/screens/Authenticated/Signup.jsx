@@ -44,7 +44,7 @@ function SignUp() {
                   history.push("/");
                 });
             }
-            history.push("/authenticated/dashboard");
+            history.push("/authenticated/calendar");
           })
           .catch((err) => {
             console.log(err);

@@ -13,4 +13,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.react-calendar {
+  width: 600px;
+}
+.react-calendar .react-calendar__navigation__arrow {
+  display: none;
+}
+
+.react-calendar__navigation__label {
+  font-size: 32px;
+}
+.react-calendar__navigation__label .react-calendar__tile {
+  height: 70px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  font-size: 16px;
+  color: #0f460f;
+}
+
+.react-calendar__tile--active {
+  color: white;
+}
+
+.react-calendar__tile,
+.react-calendar__month-view__days__day {
+  font-size: 18px;
+}
+
+.CalenderContent {
+  display: flex;
+  justify-content: space-between;
+  height: 90vh;
+}
+
 /*# sourceMappingURL=App.css.map */

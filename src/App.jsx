@@ -25,13 +25,13 @@ function App() {
         }
         exact
       />
-      <Route
+      {/* <Route
         path={"/authenticated/dashboard"}
         render={() =>
           auth.currentUser ? <Dashboard /> : <Redirect to="/signin" />
         }
         exact
-      />
+      /> */}
       <Route path="/signin" component={SignIn} exact />
       <Route path="/signup" component={SignUp} exact />
     </Switch>

@@ -1,10 +1,14 @@
-import "./App.css";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import "./styles/App.css";
+
+import Homepage from "./screens/Unauthenticated/Homepage";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hi</h1>
-    </div>
+    <Switch>
+      <Route path="/" component={Homepage} />
+    </Switch>
   );
 }
 

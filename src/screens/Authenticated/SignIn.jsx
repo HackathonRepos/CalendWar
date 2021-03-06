@@ -27,7 +27,6 @@ function SignIn() {
       .signInWithPopup(provider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         const docRef = firebase.firestore().collection("users").doc(user.uid);
         docRef
           .get()

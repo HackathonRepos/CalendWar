@@ -10,11 +10,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 
 import SideDrawer from "./SideDrawer";
+import firebase from "../firebase";
+import { useHistory } from "react-router-dom";
 
 function Navbar() {
+  const history = useHistory();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const toggleDrawer = () => {
     setIsDrawerOpen(false);
+  };
+  const logOut = () => {
+    firebase.auth().signOut();
+    history.push("/");
+    window.location.reload();
   };
   const classes = useStyles();
   return (
@@ -33,12 +41,25 @@ function Navbar() {
           <Link href="/" color="inherit" className={classes.title}>
             <Typography variant="h6">CalendWar</Typography>
           </Link>
-          <Button color="inherit" href="/signin">
-            Sign In
-          </Button>
-          <Button color="inherit" href="/signup">
-            Sign Up
-          </Button>
+          {firebase.auth().currentUser ? (
+            <>
+              <Button color="inherit">
+                Hey {firebase.auth().currentUser.displayName}
+              </Button>
+              <Button color="inherit" onClick={logOut}>
+                Log Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button color="inherit" href="/signin">
+                Sign In
+              </Button>
+              <Button color="inherit" href="/signup">
+                Sign Up
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
       <SideDrawer isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />

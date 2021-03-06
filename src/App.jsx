@@ -9,7 +9,6 @@ import SignIn from "./screens/Authenticated/SignIn";
 import SignUp from "./screens/Authenticated/SignUp";
 
 import { auth } from "./firebase";
-console.log(auth.currentUser);
 
 function App() {
   return (

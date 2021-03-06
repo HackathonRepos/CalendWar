@@ -10,13 +10,52 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { useHistory } from "react-router-dom";
 
 import GoogleButton from "react-google-button";
 
 import Navbar from "../../components/Navbar";
+import firebase from "../../firebase";
 
 function SignUp() {
   const classes = useStyles();
+  const history = useHistory();
+  const registerWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        const docRef = firebase.firestore().collection("users").doc(user.uid);
+        docRef
+          .get()
+          .then((doc) => {
+            if (!doc.exists) {
+              firebase
+                .firestore()
+                .collection("users")
+                .doc(user.uid)
+                .set({ username: user.email, dates: ["1/1", "1/2"] })
+                .then(() => console.log("success"))
+                .catch((error) => {
+                  console.log(error);
+                  history.push("/");
+                });
+            }
+            history.push("/authenticated/dashboard");
+          })
+          .catch((err) => {
+            console.log(err);
+            history.push("/");
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        history.push("/");
+      });
+  };
   return (
     <div>
       <Navbar />
@@ -30,7 +69,7 @@ function SignUp() {
             Sign Up
           </Typography>
           <form className={classes.form} noValidate>
-            <TextField
+            {/* <TextField
               variant="outlined"
               margin="normal"
               required
@@ -60,19 +99,21 @@ function SignUp() {
               className={classes.submit}
             >
               Sign Up
-            </Button>
-            <Typography
+            </Button> */}
+            {/* <Typography
               style={{ fontWeight: "bold", textAlign: "center" }}
               variant="h6"
             >
               OR
-            </Typography>
+            </Typography> */}
             <GoogleButton
               type="dark"
               style={{
                 marginLeft: "auto",
                 marginRight: "auto",
+                marginTop: "20px",
               }}
+              onClick={registerWithGoogle}
             />
             <Grid container style={{ paddingTop: "25px" }}>
               <Grid item>

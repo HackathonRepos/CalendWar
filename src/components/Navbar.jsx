@@ -39,14 +39,6 @@ function Navbar() {
           <Button color="inherit" href="/signup">
             Sign Up
           </Button>
-          <Button
-            variant="outlined"
-            href="/unauthenticated/calendar"
-            size={"large"}
-            className={classes.try}
-          >
-            Try It Out
-          </Button>
         </Toolbar>
       </AppBar>
       <SideDrawer isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />

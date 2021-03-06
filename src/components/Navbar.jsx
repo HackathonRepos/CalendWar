@@ -19,7 +19,7 @@ function Navbar() {
   const classes = useStyles();
   return (
     <div>
-      <AppBar position="static" color="secondary">
+      <AppBar position="static" color="secondary" className={classes.nav}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -55,6 +55,9 @@ function Navbar() {
 }
 
 const useStyles = makeStyles((theme) => ({
+  nav: {
+    height: "10vh",
+  },
   root: {
     flexGrow: 1,
   },

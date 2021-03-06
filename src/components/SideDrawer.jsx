@@ -29,26 +29,35 @@ function SideDrawer({ isDrawerOpen, toggleDrawer }) {
           linkText=""
           toggleDrawer={toggleDrawer}
         />
-        <ListSection listText={"HOME"} ListIcon={HomeIcon} linkText={"/"} />
+        <ListSection
+          listText={"HOME"}
+          ListIcon={HomeIcon}
+          linkText={"/"}
+          toggleDrawer={toggleDrawer}
+        />
         <ListSection
           listText={"SIGN IN"}
           ListIcon={LockIcon}
           linkText="/signin"
+          toggleDrawer={toggleDrawer}
         />
         <ListSection
           listText={"SIGN UP"}
           ListIcon={CreateIcon}
           linkText="/signup"
+          toggleDrawer={toggleDrawer}
         />
         <ListSection
           listText={"TRY IT OUT"}
           ListIcon={PlayArrowIcon}
           linkText="/unauthenticated/calendar"
+          toggleDrawer={toggleDrawer}
         />
         <ListSection
           listText={"Check this project out on Github!"}
           ListIcon={GitHubIcon}
           linkText="https://github.com/Mihir-Achyuta/CalendWar"
+          toggleDrawer={toggleDrawer}
         />
       </Container>
     </Drawer>

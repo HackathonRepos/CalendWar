@@ -6,19 +6,26 @@ import Link from "@material-ui/core/Link";
 import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { useHistory } from "react-router-dom";
+
 function ListSection({ listText, ListIcon, linkText, toggleDrawer }) {
+  const history = useHistory();
   const handleClick = () => {
-    if (toggleDrawer) {
+    if (linkText === "") {
       toggleDrawer();
+    } else if (linkText.includes("github")) {
+      toggleDrawer();
+      window.open("https://github.com/Mihir-Achyuta/CalendWar");
+    } else {
+      toggleDrawer();
+      setTimeout(() => {
+        history.push(linkText);
+      }, 100);
     }
   };
   const classes = useStyles();
   return (
-    <Link
-      href={linkText.length > 0 ? linkText : null}
-      color={"secondary"}
-      underline="none"
-    >
+    <div>
       <ListItem button onClick={handleClick} className={classes.item}>
         <ListItemIcon>
           <ListIcon color="secondary" />
@@ -26,7 +33,7 @@ function ListSection({ listText, ListIcon, linkText, toggleDrawer }) {
         <ListItemText href="/signin">{listText}</ListItemText>
       </ListItem>
       <Divider />
-    </Link>
+    </div>
   );
 }
 

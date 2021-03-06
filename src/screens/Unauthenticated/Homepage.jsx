@@ -23,7 +23,7 @@ function Homepage() {
           className={classes.button}
           style={{ color: "rgba(245,0,87,1)" }}
           variant="extended"
-          href="/unauthenticated/calendar"
+          href="/signup"
         >
           Lets Prevent This
           <ArrowForwardIosIcon style={{ color: "rgba(245,0,87,1)" }} />

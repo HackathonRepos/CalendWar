@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
+import Link from "@material-ui/core/Link";
 
 function Navbar() {
   const classes = useStyles();
@@ -21,9 +22,10 @@ function Navbar() {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          CalendWar
-        </Typography>
+        <Link href="/" color="inherit" className={classes.title}>
+          <Typography variant="h6">CalendWar</Typography>
+        </Link>
+
         <Button color="inherit" href="/signin">
           Sign In
         </Button>

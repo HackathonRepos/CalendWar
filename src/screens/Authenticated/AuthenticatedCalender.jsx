@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "../../components/Navbar";
 
 function AuthenticatedCalender() {
   return (
     <div>
-      <h1>AuthenticatedCalender</h1>
+      <Navbar />
     </div>
   );
 }

@@ -2,9 +2,6 @@ import React from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,36 +10,47 @@ import LockIcon from "@material-ui/icons/Lock";
 import HomeIcon from "@material-ui/icons/Home";
 import CreateIcon from "@material-ui/icons/Create";
 import GitHubIcon from "@material-ui/icons/GitHub";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+
+import ListSection from "../components/SideDrawerComponents/ListSection";
 
 function SideDrawer({ isDrawerOpen, toggleDrawer }) {
   const classes = useStyles();
   return (
-    <Drawer className={classes.drawer} open={isDrawerOpen}>
+    <Drawer
+      className={classes.drawer}
+      open={isDrawerOpen}
+      onClose={toggleDrawer}
+    >
       <Container>
-        <IconButton onClick={toggleDrawer}>
-          <ChevronLeftIcon />
-        </IconButton>
-      </Container>
-      <Divider />
-      <Container>
-        <ListItem button>
-          <ListItemText>HOME</ListItemText>
-        </ListItem>
         <Divider />
-        <ListItem button>
-          <ListItemText>SIGN IN</ListItemText>
-        </ListItem>
-        <ListItem button>
-          <ListItemText>SIGN UP</ListItemText>
-        </ListItem>
-        <Divider />
-        <ListItem button>
-          <ListItemText>TRY IT OUT</ListItemText>
-        </ListItem>
-        <Divider />
-        <ListItem button>
-          <ListItemText>Check this project out on Github!</ListItemText>
-        </ListItem>
+        <ListSection
+          listText="CLOSE"
+          ListIcon={ChevronLeftIcon}
+          linkText=""
+          toggleDrawer={toggleDrawer}
+        />
+        <ListSection listText={"HOME"} ListIcon={HomeIcon} linkText={"/"} />
+        <ListSection
+          listText={"SIGN IN"}
+          ListIcon={LockIcon}
+          linkText="/signin"
+        />
+        <ListSection
+          listText={"SIGN UP"}
+          ListIcon={CreateIcon}
+          linkText="/signup"
+        />
+        <ListSection
+          listText={"TRY IT OUT"}
+          ListIcon={PlayArrowIcon}
+          linkText="/unauthenticated/calendar"
+        />
+        <ListSection
+          listText={"Check this project out on Github!"}
+          ListIcon={GitHubIcon}
+          linkText="https://github.com/Mihir-Achyuta/CalendWar"
+        />
       </Container>
     </Drawer>
   );

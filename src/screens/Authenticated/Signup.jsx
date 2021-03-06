@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+import GoogleButton from "react-google-button";
+
 import Navbar from "../../components/Navbar";
 
 function SignUp() {
@@ -59,7 +61,20 @@ function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container>
+            <Typography
+              style={{ fontWeight: "bold", textAlign: "center" }}
+              variant="h6"
+            >
+              OR
+            </Typography>
+            <GoogleButton
+              type="dark"
+              style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
+            />
+            <Grid container style={{ paddingTop: "25px" }}>
               <Grid item>
                 <Link href="/signin" variant="body2">
                   {"Already have an account? Sign in"}

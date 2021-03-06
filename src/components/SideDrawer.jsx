@@ -12,9 +12,17 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
 import ListSection from "../components/SideDrawerComponents/ListSection";
+import firebase from "../firebase";
+import { useHistory } from "react-router-dom";
 
 function SideDrawer({ isDrawerOpen, toggleDrawer }) {
+  const history = useHistory();
   const classes = useStyles();
+  const logOut = () => {
+    firebase.auth().signOut();
+    history.push("/");
+    window.location.reload();
+  };
   return (
     <Drawer
       className={classes.drawer}
@@ -35,18 +43,30 @@ function SideDrawer({ isDrawerOpen, toggleDrawer }) {
           linkText={"/"}
           toggleDrawer={toggleDrawer}
         />
-        <ListSection
-          listText={"SIGN IN"}
-          ListIcon={LockIcon}
-          linkText="/signin"
-          toggleDrawer={toggleDrawer}
-        />
-        <ListSection
-          listText={"SIGN UP"}
-          ListIcon={CreateIcon}
-          linkText="/signup"
-          toggleDrawer={toggleDrawer}
-        />
+        {firebase.auth().currentUser ? (
+          <ListSection
+            listText={"SIGN OUT"}
+            ListIcon={LockIcon}
+            linkText="/signin"
+            toggleDrawer={toggleDrawer}
+            logOut={logOut}
+          />
+        ) : (
+          <>
+            <ListSection
+              listText={"SIGN IN"}
+              ListIcon={LockIcon}
+              linkText="/signin"
+              toggleDrawer={toggleDrawer}
+            />
+            <ListSection
+              listText={"SIGN UP"}
+              ListIcon={CreateIcon}
+              linkText="/signup"
+              toggleDrawer={toggleDrawer}
+            />
+          </>
+        )}
         <ListSection
           listText={"TRY IT OUT"}
           ListIcon={PlayArrowIcon}

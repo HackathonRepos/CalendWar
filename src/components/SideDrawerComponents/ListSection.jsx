@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { useHistory } from "react-router-dom";
 
-function ListSection({ listText, ListIcon, linkText, toggleDrawer }) {
+function ListSection({ listText, ListIcon, linkText, toggleDrawer, logOut }) {
   const history = useHistory();
   const handleClick = () => {
     if (linkText === "") {
@@ -16,6 +16,8 @@ function ListSection({ listText, ListIcon, linkText, toggleDrawer }) {
     } else if (linkText.includes("github")) {
       toggleDrawer();
       window.open("https://github.com/Mihir-Achyuta/CalendWar");
+    } else if (logOut) {
+      logOut();
     } else {
       toggleDrawer();
       setTimeout(() => {

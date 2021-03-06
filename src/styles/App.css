@@ -47,4 +47,14 @@ code {
   height: 90vh;
 }
 
+@media screen and (max-width: 600px) {
+  .CalenderContent {
+    display: none;
+    display: flex;
+    justify-content: space-between;
+    height: 90vh;
+    flex-direction: column;
+  }
+}
+
 /*# sourceMappingURL=App.css.map */

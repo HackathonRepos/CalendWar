@@ -1,7 +1,6 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -22,7 +21,7 @@ function SideDrawer({ isDrawerOpen, toggleDrawer }) {
       open={isDrawerOpen}
       onClose={toggleDrawer}
     >
-      <Container>
+      <Container className={classes.container}>
         <Divider />
         <ListSection
           listText="CLOSE"
@@ -60,6 +59,12 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: 240,
     flexShrink: 0,
+  },
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    height: "100%",
   },
 }));
 

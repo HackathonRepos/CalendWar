@@ -77,7 +77,12 @@ function AuthenticatedCalendar() {
           </div>
           <div>
             {historicalData["data"][historyType].map((ev, i) => (
-              <Event year={ev.year} description={ev.text} key={i} />
+              <Event
+                year={ev.year}
+                description={ev.text}
+                links={ev.links}
+                key={i}
+              />
             ))}
           </div>
         </div>

@@ -47,7 +47,7 @@ code {
   height: 90vh;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .CalenderContent {
     display: none;
     display: flex;

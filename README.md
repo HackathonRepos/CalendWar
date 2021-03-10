@@ -1,4 +1,6 @@
 ## Calendwar
+
+## This is an unmaintained and undeployed repo now as my hackathon projects are not meant for production or else I would take them out of this organization
 [Devpost Link](https://devpost.com/software/calendwar)
 
 ![Homepage](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/422/361/datas/original.PNG)

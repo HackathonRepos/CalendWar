@@ -10,18 +10,17 @@ import { mockData } from "./original";
 
 function AuthenticatedCalendar() {
   const [value, onChange] = useState(new Date());
-  const [historicalData, setHistoricalData] = useState(mockData);
+  const [historicalData, setHistoricalData] = useState({});
   const [historyType, setHistoryType] = useState("Events");
   const month = value.getMonth() + 1;
   const day = value.getDate();
   const handleChange = (val) => {
     onChange(val);
     axios
-      .get(
-        `https://cors-anywhere.herokuapp.com/http://history.muffinlabs.com/date/${month}/${day}`
-      )
+      .get(`/api/history/${month}/${day}`)
       .then(({ data }) => {
-        setHistoricalData(data);
+        const { historyData } = data;
+        setHistoricalData(historyData);
       })
       .catch((err) => console.log(err));
   };
@@ -30,12 +29,11 @@ function AuthenticatedCalendar() {
   };
   useEffect(() => {
     axios
-      .get(
-        `https://cors-anywhere.herokuapp.com/http://history.muffinlabs.com/date/${month}/${day}`
-      )
+      .get(`/api/history/${month}/${day}`)
       .then(({ data }) => {
-        console.log(data);
-        setHistoricalData(data);
+        const { historyData } = data;
+        console.log(historyData);
+        setHistoricalData(historyData);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -62,29 +60,35 @@ function AuthenticatedCalendar() {
             flexDirection: "column",
           }}
         >
-          <div>
-            <h1>Events and Conflicts on {historicalData["date"]}</h1>
-            <Select
-              labelId="demo-simple-select-filled-label"
-              id="demo-simple-select-filled"
-              value={historyType}
-              onChange={changeType}
-            >
-              <MenuItem value={"Events"}>Events</MenuItem>
-              <MenuItem value={"Births"}>Births</MenuItem>
-              <MenuItem value={"Deaths"}>Deaths</MenuItem>
-            </Select>
-          </div>
-          <div>
-            {historicalData["data"][historyType].map((ev, i) => (
-              <Event
-                year={ev.year}
-                description={ev.text}
-                links={ev.links}
-                key={i}
-              />
-            ))}
-          </div>
+          {historicalData["date"] === undefined ? (
+            <h1>Loading</h1>
+          ) : (
+            <>
+              <div>
+                <h1>Events and Conflicts on {historicalData["date"]}</h1>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="demo-simple-select-filled"
+                  value={historyType}
+                  onChange={changeType}
+                >
+                  <MenuItem value={"Events"}>Events</MenuItem>
+                  <MenuItem value={"Births"}>Births</MenuItem>
+                  <MenuItem value={"Deaths"}>Deaths</MenuItem>
+                </Select>
+              </div>
+              <div>
+                {historicalData["data"][historyType].map((ev, i) => (
+                  <Event
+                    year={ev.year}
+                    description={ev.text}
+                    links={ev.links}
+                    key={i}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -2,11 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
+const env = require("dotenv");
 const axios = require("axios");
 
+env.config();
 app.use(cors());
 
-app.listen(3001, function () {
+app.listen(process.env.PORT || 3001, function () {
   console.log("Listening on port 3001");
 });
 

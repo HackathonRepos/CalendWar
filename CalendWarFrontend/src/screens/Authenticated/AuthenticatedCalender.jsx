@@ -6,7 +6,6 @@ import axios from "axios";
 import Event from "../../components/CalenderComponents/Event";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import { mockData } from "./original";
 
 function AuthenticatedCalendar() {
   const [value, onChange] = useState(new Date());
@@ -17,7 +16,9 @@ function AuthenticatedCalendar() {
   const handleChange = (val) => {
     onChange(val);
     axios
-      .get(`/api/history/${month}/${day}`)
+      .get(
+        `https://calendwar-backend.herokuapp.com/api/history/${month}/${day}`
+      )
       .then(({ data }) => {
         const { historyData } = data;
         setHistoricalData(historyData);
@@ -29,7 +30,9 @@ function AuthenticatedCalendar() {
   };
   useEffect(() => {
     axios
-      .get(`/api/history/${month}/${day}`)
+      .get(
+        `https://calendwar-backend.herokuapp.com/api/history/${month}/${day}`
+      )
       .then(({ data }) => {
         const { historyData } = data;
         console.log(historyData);

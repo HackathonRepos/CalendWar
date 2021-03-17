@@ -12,7 +12,7 @@ import SignUp from "./screens/Authenticated/Signup";
 import { auth } from "./firebase";
 
 axios
-  .get("/api")
+  .get("https://calendwar-backend.herokuapp.com/api")
   .then(({ data }) => console.log("Server Online", data["serverOnline"]))
   .catch((err) => console.log(err));
 
